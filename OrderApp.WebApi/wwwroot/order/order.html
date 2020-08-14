@@ -1,0 +1,47 @@
+﻿<div style="margin-top: 50px;" class="container" ng-controller="OrderController">
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <div class="row">
+                <div class="col-sm-4">Product</div>
+                <div class="col-sm-2">Price</div>
+                <div class="col-sm-2">In Stock</div>
+                <div class="col-sm-2">In Order</div>
+                <div class="col-sm-2"></div>
+            </div>
+            <ul class="list-group" style="margin-top: 2%;">
+                <li class="list-group-item" ng-repeat="product in productArray">
+                    <div class="row">
+                        <div class="col-sm-4">{{product.Name}}</div>
+                        <div class="col-sm-2">{{product.Price}}</div>
+                        <div class="col-sm-2">{{product.InStock - order.quantity < 0 ? 0 : product.InStock - order.quantity}}</div>
+                        <div class="col-sm-2">{{product.in_order > 0 ? product.in_order : 0}}</div>
+                        <button class="col-sm-2 btn btn-success" ng-disabled="product.InStock <= 0" ng-click="addToCard(product)">Add</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="row">
+                <div class="col-sm-8">Card</div>
+                <button class="col-sm-4 btn btn-info">Create Order</button>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-4">Product</div>
+                <div class="col-sm-4">Quantity</div>
+                <div class="col-sm-2">Price</div>
+                <div class="col-sm-2"></div>
+            </div>
+            <ul class="list-group" style="margin-top: 2%;">
+                <li class="list-group-item" ng-repeat="order in orderArray">
+                    <div class="row">
+                        <div class="col-sm-4">{{order.productName}}</div>
+                        <div class="col-sm-4">{{order.quantity}}</div>
+                        <div class="col-sm-2">{{order.productPrice * order.quantity}}</div>
+                        <button class="col-sm-2 btn btn-success" ng-click="removeFromCard(product)">Remove</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
